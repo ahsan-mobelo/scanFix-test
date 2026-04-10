@@ -25,4 +25,13 @@ export const SCANFIX_DETECTABLE_FOLDER = "lib/scanfix-detectable";
  * - src/lib/http-status-messages.ts — 5200+ line switch (regenerate: node scripts/generate-http-status-messages.mjs)
  * - src/payments/stripe.ts + app/api/internal/stripe-webhook — webhook / signature gap
  * - src/db/connection.ts — new client per query
+ *
+ * Logical-bug samples (correctness / business rules), not security:
+ * - src/lib/billing/subscription.ts — inverted active/expiry check
+ * - src/lib/inventory/reservations.ts — off-by-one slice
+ * - src/lib/analytics/aggregates.ts — wrong denominator for average with holes
+ * - src/lib/checkout/fulfillment.ts — ship before payment gate
+ * - src/lib/promotions/eligibility.ts — && / || precedence vs product rules
+ * - src/lib/billing/shipping.ts — threshold ignores shipping fee in cart total
+ * app/api/internal/logic-samples — exercises the above
  */
