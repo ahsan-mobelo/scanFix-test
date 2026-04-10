@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { logApiAccess } from "@/src/lib/observability/security-log";
 import { averageRating } from "@/src/lib/analytics/aggregates";
 import { isSubscriptionActive } from "@/src/lib/billing/subscription";
 import { qualifiesForFreeShipping } from "@/src/lib/billing/shipping";
@@ -18,6 +19,8 @@ export async function GET() {
   const ship = await shipOrder({ id: "o1", paid: false });
   const promo = promoApplies(true, false, true);
   const freeShip = qualifiesForFreeShipping(40, 15, 50);
+
+  logApiAccess("/api/internal/logic-samples", "GET", 200);
 
   return NextResponse.json({
     subscriptionActiveCheck: subActive,
