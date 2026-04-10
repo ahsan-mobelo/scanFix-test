@@ -8,8 +8,12 @@
  * - unmaintainable-giant-switch.ts: huge duplicated / unmaintainable block
  * - unsafe-eval.ts: eval of user-controlled input
  * - leaked-secret-placeholder.ts: hardcoded token (avoid payment-provider key-shaped literals — GitHub push protection)
+ * - weak-hash.ts: MD5 used like a secure digest
+ * - insecure-random.ts: Math.random for session-like token
+ * - open-redirect.ts: redirect target taken from user input without allowlist
  * app/api/scanfix-detectable/webhook: payment-style path with weak error handling
  * app/api/scanfix-detectable/users: N+1 / query-in-loop pattern
+ * app/api/scanfix-detectable/scan-samples: imports all samples (single graph entry)
  */
 
 export const SCANFIX_DETECTABLE_FOLDER = "lib/scanfix-detectable";
