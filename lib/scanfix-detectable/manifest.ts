@@ -17,3 +17,12 @@
  */
 
 export const SCANFIX_DETECTABLE_FOLDER = "lib/scanfix-detectable";
+
+/**
+ * Production-shaped samples (paths align with scanfix.ai marketing examples):
+ * - src/api/users.ts + app/api/internal/users — query-in-loop, SQL string build, no pool
+ * - src/lib/cache.ts — concurrent cache writes
+ * - src/lib/http-status-messages.ts — 5200+ line switch (regenerate: node scripts/generate-http-status-messages.mjs)
+ * - src/payments/stripe.ts + app/api/internal/stripe-webhook — webhook / signature gap
+ * - src/db/connection.ts — new client per query
+ */
